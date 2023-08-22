@@ -27,11 +27,11 @@ void spiral(int **matr, int m, int n) {
     int i_r = 0, j_r = 0, r = 0;
     int i_d = 0, j_d = n, d = 1;
     int i_l = m, j_l = n, l = 1;
-    int u = 1, i_u = m, j_u = u - 1;
+    int u = 1, i_u = m, j_u = 0;
     int num = 1;
 
-    for (int i = 0; i < m; i++) {
-        for (int j = 0; j < n; j++) {
+    for (int i = 0; i <= m; i++) {
+        for (int j = 0; j <= n; j++) {
             if (dir == 'r') {
                 if (j_r + r <= n - r - 1) {
                     matr[i_r + r][j_r + r] = num;
@@ -41,6 +41,8 @@ void spiral(int **matr, int m, int n) {
                     dir = 'd';
                     j_r = 0;
                     r++;
+                    
+                    //printf("%d", j);
                 }
 
             } else if (dir == 'd') {
@@ -52,27 +54,30 @@ void spiral(int **matr, int m, int n) {
                     dir = 'l';
                     i_d = 0;
                     d++;
+                    
                 }
             } else if (dir == 'l') {
-                if (j_l - l > l - 1) {
+                if (j_l - l - 1 >= l - 1) {
                     matr[i_l - l][j_l - l - 1] = num;
                     j_l--;
                     num++;
+                    
                 } else {
                     dir = 'u';
-                    j_l = 0;
+                    j_l = n;
                     l++;
                 }
             } else if (dir == 'u') {
-                if (i_u - u - 1 >= u - 1) {
-                    matr[i_u - u - 1][j_u] = num;
+                
+                if (i_u - u - 1 >= u) {
+                    matr[i_u - u - 1][j_u + u - 1] = num;
                     i_u--;
                     num++;
+                    
                 } else {
                     dir = 'r';
-                    i_u = 0;
+                    i_u = m;
                     u++;
-                    break;
                 }
             }
         }
@@ -81,7 +86,7 @@ void spiral(int **matr, int m, int n) {
 
 void output(int **matr, int m, int n) {
     for (int i = 0; i < m; i++) {
-        for (int j = 0; j < n; j++) printf("%d ", matr[i][j]);
+        for (int j = 0; j < n; j++) printf("%3d ", matr[i][j]);
         printf("\n");
     }
 }
