@@ -2,16 +2,16 @@ FLAG = -Werror -Wextra -Wall
  
 all : stepik
 
-stepik : stepik.o 
-	gcc $(FLAG) build/stepik.o -o build/stepik
+stepik : spiral.o 
+	gcc $(FLAG) build/spiral.o -o build/spiral
 
-stepik.o : stepik.c
-	gcc $(FLAG) -c stepik.c -o build/stepik.o
+spiral.o : spiral.c
+	gcc $(FLAG) -c spiral.c -o build/spiral.o
 
 
 clean : 
 	rm -rf build/*.o 
-	rm -rf build/stepik
+	rm -rf build/spiral
 	rm -rf a.out
 
 rebuild :
@@ -19,7 +19,7 @@ rebuild :
 	make all
 
 leaks :
-	leaks -atExit -- build/stepik
+	leaks -atExit -- build/spiral
 
 clang: 
 	clang-format -i *.c
