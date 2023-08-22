@@ -41,8 +41,6 @@ void spiral(int **matr, int m, int n) {
                     dir = 'd';
                     j_r = 0;
                     r++;
-                    
-                    //printf("%d", j);
                 }
 
             } else if (dir == 'd') {
@@ -54,26 +52,24 @@ void spiral(int **matr, int m, int n) {
                     dir = 'l';
                     i_d = 0;
                     d++;
-                    
                 }
             } else if (dir == 'l') {
                 if (j_l - l - 1 >= l - 1) {
                     matr[i_l - l][j_l - l - 1] = num;
                     j_l--;
                     num++;
-                    
+
                 } else {
                     dir = 'u';
                     j_l = n;
                     l++;
                 }
             } else if (dir == 'u') {
-                
                 if (i_u - u - 1 >= u) {
                     matr[i_u - u - 1][j_u + u - 1] = num;
                     i_u--;
                     num++;
-                    
+
                 } else {
                     dir = 'r';
                     i_u = m;
@@ -86,7 +82,8 @@ void spiral(int **matr, int m, int n) {
 
 void output(int **matr, int m, int n) {
     for (int i = 0; i < m; i++) {
-        for (int j = 0; j < n; j++) printf("%3d", matr[i][j]);
+        for (int j = 0; j < n; j++)
+                printf("%3d", matr[i][j]);
         printf("\n");
     }
 }
