@@ -24,66 +24,56 @@ int main() {
 
 void spiral(int **matr, int m, int n) {
     int num = 1;
-    if (n == 1) {  // Случай с 1-им рядом
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                matr[i][j] = num;
-                num++;
-            }
-        }
-    } else {
-        char dir = 'r';
-        int i_r = 0, j_r = 0, r = 0;
-        int i_d = 0, j_d = n, d = 1;
-        int i_l = m, j_l = n, l = 1;
-        int u = 1, i_u = m, j_u = 0;
-        num = 1;
-        for (int i = 0; i <= m; i++) {
-            for (int j = 0; j <= n; j++) {
-                if (dir == 'r') {
-                    if (j_r + r <= n - r - 1) {
-                        matr[i_r + r][j_r + r] = num;
-                        j_r++;
-                        num++;
+    char dir = 'r';
+    int i_r = 0, j_r = 0, r = 0;
+    int i_d = 0, j_d = n, d = 1;
+    int i_l = m, j_l = n, l = 1;
+    int u = 1, i_u = m, j_u = 0;
+    for (int i = 0; i <= m; i++) {
+        for (int j = 0; j <= n; j++) {
+            if (num - 1 == m * n) break;
+            if (dir == 'r') {
+                if (j_r + r <= n - r - 1) {
+                    matr[i_r + r][j_r + r] = num;
+                    j_r++;
+                    num++;
 
-                    } else {
-                        dir = 'd';
-                        j_r = 0;
-                        r++;
-                    }
-                } else if (dir == 'd') {
-                    if (i_d + d <= m - d) {
-                        matr[i_d + d][j_d - d] = num;
-                        i_d++;
-                        num++;
-                    } else {
-                        dir = 'l';
-                        i_d = 0;
-                        d++;
-                    }
-                } else if (dir == 'l') {
-                    if (j_l - l - 1 >= l - 1) {
-                        matr[i_l - l][j_l - l - 1] = num;
-                        j_l--;
-                        num++;
-
-                    } else {
-                        dir = 'u';
-                        j_l = n;
-                        l++;
-                    }
-                } else if (dir == 'u') {
-                    if (i_u - u - 1 >= u) {
-                        matr[i_u - u - 1][j_u + u - 1] = num;
-                        i_u--;
-                        num++;
-                    } else {
-                        dir = 'r';
-                        i_u = m;
-                        u++;
-                    }
+                } else {
+                    dir = 'd';
+                    j_r = 0;
+                    r++;
                 }
-                if (num - 1 == m * n) break;
+            } else if (dir == 'd') {
+                if (i_d + d <= m - d) {
+                    matr[i_d + d][j_d - d] = num;
+                    i_d++;
+                    num++;
+                } else {
+                    dir = 'l';
+                    i_d = 0;
+                    d++;
+                }
+            } else if (dir == 'l') {
+                if (j_l - l - 1 >= l - 1) {
+                    matr[i_l - l][j_l - l - 1] = num;
+                    j_l--;
+                    num++;
+
+                } else {
+                    dir = 'u';
+                    j_l = n;
+                    l++;
+                }
+            } else if (dir == 'u') {
+                if (i_u - u - 1 >= u) {
+                    matr[i_u - u - 1][j_u + u - 1] = num;
+                    i_u--;
+                    num++;
+                } else {
+                    dir = 'r';
+                    i_u = m;
+                    u++;
+                }
             }
         }
     }
