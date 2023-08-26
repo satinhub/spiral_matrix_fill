@@ -81,7 +81,7 @@ void spiral(int **matr, int m, int n) {
 
 void output(int **matr, int m, int n) {
     for (int i = 0; i < m; i++) {
-        for (int j = 0; j < n; j++) printf("%3d", matr[i][j]);
+        for (int j = 0; j < n; j++) printf("%-5d", matr[i][j]);
         printf("\n");
     }
 }
